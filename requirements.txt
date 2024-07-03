@@ -1,0 +1,20 @@
+!pip install simpletransformers
+!pip install wandb
+pip install --upgrade tensorflow numpy
+
+! pip install pandasql
+! pip install simpletransformers
+! pip install wandb
+! pip install rouge
+
+#--------------------------------------------------------------------------------------------------------------
+Libraries:
+import pandas as pd
+from pandasql import sqldf
+import matplotlib.pyplot as plt
+import wandb
+from sklearn.model_selection import train_test_split
+from simpletransformers.question_answering import QuestionAnsweringModel
+import nltk
+from rouge import Rouge
+from nltk.translate.bleu_score import corpus_bleu, SmoothingFunction
