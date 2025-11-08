@@ -25,5 +25,4 @@ jobs:
       - name: Trigger Kaggle Notebook on GPU
         run: |
           echo "🚀 Triggering Kaggle notebook..."
-          kaggle kernels output kagglehamzakhan03/automated-run-chat-doctor \
-            --gpu
+          kaggle kernels output kagglehamzakhan03/automated-run-chat-doctor
