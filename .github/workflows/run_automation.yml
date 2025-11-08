@@ -8,21 +8,23 @@ on:
 jobs:
   run_kaggle_notebook:
     runs-on: ubuntu-latest
+
     steps:
+      # 1️⃣ Install Kaggle CLI
       - name: Install Kaggle CLI
         run: pip install kaggle
 
+      # 2️⃣ Set up Kaggle credentials
       - name: Set up Kaggle credentials
         run: |
           mkdir -p ~/.kaggle
           echo "{\"username\":\"${{ secrets.KAGGLE_USERNAME }}\",\"key\":\"${{ secrets.KAGGLE_KEY }}\"}" > ~/.kaggle/kaggle.json
           chmod 600 ~/.kaggle/kaggle.json
 
-      - name: Trigger Kaggle Notebook
+      # 3️⃣ Trigger notebook on GPU
+      - name: Trigger Kaggle Notebook on GPU
         run: |
-          echo "🚀 Triggering Kaggle notebook on GPU..."
-          kaggle kernels push \
-            -p ./kaggle_notebook_folder \
-            --kernel-type notebook \
-            --id kagglehamzakhan03/automated-run-chat-doctor \
-            --gpu
+          echo "🚀 Triggering Kaggle notebook..."
+          kaggle kernels output kagglehamzakhan03/automated-run-chat-doctor \
+            --gpu \
+            --dir ./output
