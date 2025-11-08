@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 0️⃣ Checkout the repository (essential!)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       # 1️⃣ Install Kaggle CLI
       - name: Install Kaggle CLI
         run: pip install kaggle
@@ -18,11 +22,12 @@ jobs:
       - name: Set up Kaggle credentials
         run: |
           mkdir -p ~/.kaggle
+          # Use secrets for security
           echo "{\"username\":\"${{ secrets.KAGGLE_USERNAME }}\",\"key\":\"${{ secrets.KAGGLE_KEY }}\"}" > ~/.kaggle/kaggle.json
           chmod 600 ~/.kaggle/kaggle.json
 
-      # 3️⃣ Trigger notebook on GPU
+      # 3️⃣ Trigger notebook on GPU (Corrected Step with specific path)
       - name: Trigger Kaggle Notebook on GPU
         run: |
-          echo "🚀 Triggering Kaggle notebook..."
-          kaggle kernels output kagglehamzakhan03/automated-run-chat-doctor
+          echo "🚀 Pushing and triggering Kaggle notebook..."
+          kaggle kernels push -p ./kaggle_notebook

@@ -1,0 +1,11 @@
+{
+  "id": "kagglehamzakhan03/automated-run-chat-doctor",
+  "title": "automated-run-chat-doctor",
+  "code_file": "automated-run.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,       
+  "enable_internet": true,
+  "enable_gpu_kernel": true
+}
