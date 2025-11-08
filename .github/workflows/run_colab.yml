@@ -1,29 +1,19 @@
-name: Run Colab Notebook on GPU
-
+name: Run Colab Training Daily
 on:
   schedule:
-    - cron: "0 12 * * *"   # Once daily at 12:00 UTC
-  workflow_dispatch:        # Allow manual trigger
+    - cron: "0 6 * * *" # daily at 6 AM UTC
+  workflow_dispatch:
 
 jobs:
-  run_colab:
+  trigger:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-          
-      - name: Install dependencies
-        run: |
-          pip install gdown requests colab-cli huggingface_hub
-          
-      - name: Run Colab Notebook
+      - name: Trigger Colab via Browserless API (free)
         env:
-          COLAB_TOKEN: ${{ secrets.COLAB_AUTH_TOKEN }}
+          COLAB_NOTEBOOK_URL: "https://colab.research.google.com/drive/<your_notebook_id>"
         run: |
-          python run_colab.py
+          echo "Launching Colab..."
+          curl -X POST "https://api.browserless.io/content?token=YOUR_FREE_BROWSERLESS_KEY" \
+          -H "Content-Type: application/json" \
+          -d "{\"url\": \"${COLAB_NOTEBOOK_URL}\"}"
+          echo "✅ Colab execution triggered."
