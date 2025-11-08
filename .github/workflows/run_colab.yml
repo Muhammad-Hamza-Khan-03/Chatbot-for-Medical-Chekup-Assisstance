@@ -1,19 +1,22 @@
-name: Run Colab Training Daily
+name: Trigger Colab Notebook Daily
+
+# Schedule: daily at 6 AM UTC
 on:
   schedule:
-    - cron: "0 6 * * *" # daily at 6 AM UTC
+    - cron: "0 6 * * *"
   workflow_dispatch:
 
 jobs:
-  trigger:
+  trigger_colab:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Colab via Browserless API (free)
+      - name: Trigger Colab Notebook
         env:
-          COLAB_NOTEBOOK_URL: "https://colab.research.google.com/drive/<your_notebook_id>"
+          NOTEBOOK_URL: "https://colab.research.google.com/drive/1SeHbsZmIc_BCX8Keiu5lz3NvRbTI2XBv"
+          BROWSERLESS_TOKEN: ${{ secrets.BROWSERLESS_TOKEN }}
         run: |
-          echo "Launching Colab..."
-          curl -X POST "https://api.browserless.io/content?token=YOUR_FREE_BROWSERLESS_KEY" \
-          -H "Content-Type: application/json" \
-          -d "{\"url\": \"${COLAB_NOTEBOOK_URL}\"}"
-          echo "✅ Colab execution triggered."
+          echo "🚀 Triggering Colab notebook..."
+          curl -X POST "https://chrome.browserless.io/content?token=${BROWSERLESS_TOKEN}" \
+               -H "Content-Type: application/json" \
+               -d "{\"url\": \"${NOTEBOOK_URL}\"}"
+          echo "✅ Notebook triggered successfully"
