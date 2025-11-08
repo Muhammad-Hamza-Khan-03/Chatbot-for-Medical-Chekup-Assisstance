@@ -26,5 +26,4 @@ jobs:
         run: |
           echo "🚀 Triggering Kaggle notebook..."
           kaggle kernels output kagglehamzakhan03/automated-run-chat-doctor \
-            --gpu \
-            --dir ./output
+            --gpu
