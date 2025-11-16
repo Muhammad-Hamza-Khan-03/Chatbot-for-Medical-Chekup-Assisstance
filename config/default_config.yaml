@@ -1,0 +1,35 @@
+data:
+  train_path: "data/raw/train.csv"
+  test_size: 0.25
+  random_state: 42
+
+model:
+  model_type: "bert"  # Options: bert, mobilebert, roberta
+  model_name: "bert-base-cased"  # HuggingFace model name
+  learning_rate: 5e-5
+  num_train_epochs: 1
+  train_batch_size: 16
+  dropout: 0.3
+  use_cuda: true
+
+training:
+  output_dir: "models/checkpoints"
+  wandb_project: null  
+  evaluate_during_training: true
+  save_steps: -1
+  n_best_size: 5
+
+evaluation:
+  n_samples: null 
+  calculate_bleu: true
+  calculate_rouge: true
+  smoothing_method: 2
+
+logging:
+  log_level: "INFO" 
+  log_dir: "logs"
+
+visualization:
+  save_plots: true
+  plot_dir: "logs/plots"
+
