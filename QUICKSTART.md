@@ -150,3 +150,4 @@ print(f"BLEU Score: {results['comprehensive_evaluation']['bleu_score']}")
 
 For issues or questions, please open an issue on GitHub.
 
+Blagodaryu!
